@@ -41,7 +41,7 @@ public class ProvaInvio {
     
     public static void main(String[]args) throws SigarException, InterruptedException {
         
-        String topic        = "/daniele/temperature";
+        String topic        = "/daniele/idle";
         String content;
         int qos             = 2;
         String broker       = "tcp://mqtt.thingstud.io:1883";
@@ -77,7 +77,10 @@ public class ProvaInvio {
                     //System.out.print("\t" + d);
                     //int z = d.intValue();
                     //content = String.valueOf(z);
-                    content=d.toString();
+                    d=d*100;
+                    //int z=d.intValue();
+                    //content= d.toString();
+                    content = String.valueOf(d);
                     System.out.println("Publishing message: " + content);
                     MqttMessage message = new MqttMessage(content.getBytes());
                     message.setQos(qos);
